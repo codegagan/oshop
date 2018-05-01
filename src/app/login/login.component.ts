@@ -17,17 +17,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public socialSignIn(socialPlatform: string) {
-    let socialPlatformProvider;
-    if (socialPlatform === 'facebook') {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (socialPlatform === 'google') {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-
-    this.socialAuthService.signIn(socialPlatformProvider).then(
+  public socialSignIn() {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (userData) => {
-        console.log(socialPlatform + ' sign in data : ' , userData);
+        console.log('Google' + ' sign in data : ' , userData);
       }
     ).catch(err => console.log('Error after sign in', err));
   }
