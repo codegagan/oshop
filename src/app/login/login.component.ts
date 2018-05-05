@@ -20,8 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   public socialSignIn() {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
-      (userData) => {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
         // console.log('Google sign in data : ' , userData);
         this.userService.update({email: userData.email, name: userData.name, provider: userData.provider, providerId: userData.id});
         const returnUrl = this.router.routerState.snapshot.root.queryParams['returnUrl'];

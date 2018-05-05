@@ -4,4 +4,5 @@ export interface User {
     provider?: string;
     providerId: string;
     id?: string;
+    isAdmin?: boolean;
 }

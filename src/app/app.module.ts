@@ -24,6 +24,7 @@ import {
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminGuardService } from './services/admin-guard.service';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -69,8 +70,8 @@ export function getAuthServiceConfigs() {
       { path: 'my/orders', component: MyOrdersComponent , canActivate: [AuthGuardService]},
       { path: 'order-success', component: OrderSuccessComponent , canActivate: [AuthGuardService]},
       { path: 'login', component: LoginComponent },
-      { path: 'admin/products', component: AdminProductsComponent , canActivate: [AuthGuardService]},
-      { path: 'admin/orders', component: AdminOrdersComponent , canActivate: [AuthGuardService]}
+      { path: 'admin/products', component: AdminProductsComponent , canActivate: [AuthGuardService, AdminGuardService]},
+      { path: 'admin/orders', component: AdminOrdersComponent , canActivate: [AuthGuardService, AdminGuardService]}
     ])
   ],
   providers: [ {
@@ -78,7 +79,8 @@ export function getAuthServiceConfigs() {
     useFactory: getAuthServiceConfigs
   },
   AuthGuardService,
-  UserService
+  UserService,
+  AdminGuardService
 ],
   bootstrap: [AppComponent]
 })

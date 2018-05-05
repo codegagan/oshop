@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, SocialUser } from 'angular5-social-login';
+import {Observable} from 'rxjs/Observable';
+import { AdminGuardService } from '../services/admin-guard.service';
+import { UserService } from '../services/user.service';
+import { User } from '../services/model/User';
 
 @Component({
   selector: 'app-bs-navbar',
@@ -8,10 +12,18 @@ import { AuthService, SocialUser } from 'angular5-social-login';
 })
 export class BsNavbarComponent implements OnInit {
 
-  constructor(public socialAuthService: AuthService) {
+  public user: User;
+
+  constructor(public socialAuthService: AuthService, private userService: UserService) {
   }
 
   ngOnInit() {
+    this.socialAuthService.authState.switchMap(gUser => {
+      if(gUser) return this.userService.getUser(gUser.id);
+      return Observable.of(null);
+    }
+    )
+    .subscribe(user => this.user = user);
   }
 
   logout() {
