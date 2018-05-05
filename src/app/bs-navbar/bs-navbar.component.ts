@@ -19,7 +19,7 @@ export class BsNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.socialAuthService.authState.switchMap(gUser => {
-      if(gUser) return this.userService.getUser(gUser.id);
+      if (gUser) return this.userService.getUser(gUser.id);
       return Observable.of(null);
     }
     )
