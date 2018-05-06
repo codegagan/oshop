@@ -25,6 +25,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminGuardService } from './services/admin-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './services/category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './services/product.service';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -55,13 +59,15 @@ export function getAuthServiceConfigs() {
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     SocialLoginModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent},
@@ -70,6 +76,7 @@ export function getAuthServiceConfigs() {
       { path: 'my/orders', component: MyOrdersComponent , canActivate: [AuthGuardService]},
       { path: 'order-success', component: OrderSuccessComponent , canActivate: [AuthGuardService]},
       { path: 'login', component: LoginComponent },
+      { path: 'admin/product/new', component: ProductFormComponent , canActivate: [AuthGuardService, AdminGuardService]},
       { path: 'admin/products', component: AdminProductsComponent , canActivate: [AuthGuardService, AdminGuardService]},
       { path: 'admin/orders', component: AdminOrdersComponent , canActivate: [AuthGuardService, AdminGuardService]}
     ])
@@ -80,7 +87,9 @@ export function getAuthServiceConfigs() {
   },
   AuthGuardService,
   UserService,
-  AdminGuardService
+  AdminGuardService,
+  CategoryService,
+  ProductService
 ],
   bootstrap: [AppComponent]
 })
