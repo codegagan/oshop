@@ -27,16 +27,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminGuardService } from './services/admin-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './services/category.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
       [
-        {
-          id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider('122380041958566')
-        },
+        // {
+        //   id: FacebookLoginProvider.PROVIDER_ID,
+        //   provider: new FacebookLoginProvider('122380041958566')
+        // },
         {
           id: GoogleLoginProvider.PROVIDER_ID,
           provider: new GoogleLoginProvider('1010054408299-n26dt2ae2l55053ppcih5qj4dkt8tvca.apps.googleusercontent.com')
@@ -64,6 +64,7 @@ export function getAuthServiceConfigs() {
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     SocialLoginModule,
     HttpClientModule,

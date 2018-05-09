@@ -2,7 +2,7 @@ export interface Product {
     title: string;
     price: number;
     category: Category;
-    imageUrl: string;
+    url: string;
 }
 
 enum Category {

@@ -1,32 +1,33 @@
-<form #product="ngForm" (submit)="createProduct(product.value)">
+<form [formGroup]="product" (submit)="createProduct()">
   <div class="form-group">
     <label for="title">Title</label>
-    <input #title="ngModel" ngModel name="title" type="text" class="form-control" id="title" required>
-    <div class="alert alert-danger" *ngIf="title.touched && title.invalid">Title is required</div>
+    <input type="text" class="form-control" id="title" formControlName="title">
+    <div class="alert alert-danger" *ngIf="product.get('title').touched && product.get('title').invalid">Title is required</div>
   </div>
 
   <div class="form-group">
     <label for="price">Price</label>
     <div class="input-group-prepend">
         <span class="input-group-text">₹</span>
-        <input #price="ngModel" ngModel name="price" type="number" class="form-control" id="price" required>        
+        <input type="number" class="form-control" id="price" formControlName="price">        
       </div>
-      <div class="alert alert-danger" *ngIf="price.touched && price.errors.required">Price is invalid</div>
+      <div class="alert alert-danger" *ngIf="product.get('price').touched && product.get('price').invalid">Price is invalid</div>
   </div>
  
   <div class="form-group">
     <label for="category">Category</label>
-    <select #category="ngModel" ngModel name="category" class="form-control" id="category" required>
+    <select formControlName="category" class="form-control" id="category" >
       <option></option>
       <option *ngFor="let category of categories$ | async" [value]="category.key">{{category.name}}</option>
     </select>
-    <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required</div>
+    <div class="alert alert-danger" *ngIf="product.get('category').touched && product.get('category').invalid">Category is required</div>
   </div>
 
   <div class="form-group">
     <label for="imageUrl">Image Url</label>
-    <input #image="ngModel" ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required>
-    <div class="alert alert-danger" *ngIf="image.touched && image.invalid">Image url is required</div>
+    <!-- <input #image="ngModel" ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required> -->
+    <input type="text" class="form-control" id="imageUrl" formControlName="url">
+    <div class="alert alert-danger" *ngIf="product.get('url').touched && product.get('url').invalid">Image url is required</div>
   </div>
-  <button type="submit" class="btn btn-primary">Save</button>
+  <button type="submit" class="btn btn-primary" [disabled]="product.pristine || product.invalid">Save</button>
 </form>
