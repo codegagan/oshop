@@ -1,33 +1,47 @@
-<form [formGroup]="product" (submit)="createProduct()">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" formControlName="title">
-    <div class="alert alert-danger" *ngIf="product.get('title').touched && product.get('title').invalid">Title is required</div>
-  </div>
-
-  <div class="form-group">
-    <label for="price">Price</label>
-    <div class="input-group-prepend">
-        <span class="input-group-text">₹</span>
-        <input type="number" class="form-control" id="price" formControlName="price">        
+<div class="oshop-flow">
+  <div class="oshop-form">
+    <form [formGroup]="product" (submit)="createProduct()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+        <div class="alert alert-danger" *ngIf="product.get('title').touched && product.get('title').invalid">Title is required</div>
       </div>
-      <div class="alert alert-danger" *ngIf="product.get('price').touched && product.get('price').invalid">Price is invalid</div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group-prepend">
+          <span class="input-group-text">₹</span>
+          <input type="number" class="form-control" id="price" formControlName="price">
+        </div>
+        <div class="alert alert-danger" *ngIf="product.get('price').touched && product.get('price').invalid">Price is invalid</div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select formControlName="category" class="form-control" id="category">
+          <option></option>
+          <option *ngFor="let category of categories$ | async" [value]="category.key">{{category.name}}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="product.get('category').touched && product.get('category').invalid">Category is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <!-- <input #image="ngModel" ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required> -->
+        <input type="text" class="form-control" id="imageUrl" formControlName="url">
+        <div class="alert alert-danger" *ngIf="product.get('url').touched && product.get('url').invalid">Image url is required</div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="product.pristine || product.invalid">Save</button>
+    </form>
+  </div>
+  <div class="oshop-preview">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="product.get('url').value">
+      <div class="card-body">
+        <h5 class="card-title">{{product.get('title').value}}</h5>
+        <p class="card-text">{{product.get('price').value |currency: 'INR': "symbol"}}</p>
+      </div>
+    </div>
   </div>
  
-  <div class="form-group">
-    <label for="category">Category</label>
-    <select formControlName="category" class="form-control" id="category" >
-      <option></option>
-      <option *ngFor="let category of categories$ | async" [value]="category.key">{{category.name}}</option>
-    </select>
-    <div class="alert alert-danger" *ngIf="product.get('category').touched && product.get('category').invalid">Category is required</div>
-  </div>
-
-  <div class="form-group">
-    <label for="imageUrl">Image Url</label>
-    <!-- <input #image="ngModel" ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required> -->
-    <input type="text" class="form-control" id="imageUrl" formControlName="url">
-    <div class="alert alert-danger" *ngIf="product.get('url').touched && product.get('url').invalid">Image url is required</div>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="product.pristine || product.invalid">Save</button>
-</form>
+</div>

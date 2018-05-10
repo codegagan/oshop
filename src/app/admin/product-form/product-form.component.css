@@ -1,0 +1,13 @@
+.oshop-flow{
+    display: flex;
+}
+
+.oshop-form{
+    flex: auto;
+}
+
+.oshop-preview{
+    flex: auto;
+    margin: 2rem;
+    margin-left: 4rem;
+}
