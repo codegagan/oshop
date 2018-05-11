@@ -32,6 +32,7 @@
         <div class="alert alert-danger" *ngIf="product.get('url').touched && product.get('url').invalid">Image url is required</div>
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="product.pristine || product.invalid">Save</button>
+      <button class="btn btn-danger" type="button" (click)="delete()" [disabled]="!id">Delete</button>
     </form>
   </div>
   <div class="oshop-preview">

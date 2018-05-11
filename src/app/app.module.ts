@@ -29,6 +29,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './services/category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
+import {DataTableModule} from 'angular5-data-table';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -69,6 +70,7 @@ export function getAuthServiceConfigs() {
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
+    DataTableModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent},

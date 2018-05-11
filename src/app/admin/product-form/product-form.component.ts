@@ -48,6 +48,17 @@ export class ProductFormComponent implements OnInit, OnDestroy{
     } else {
       this.productService.create(this.product.value);
     }
+    this.navigate();
+  }
+
+  delete() {
+    if (confirm('Are you sure you want to delete this Product ?')) {
+      this.productService.delete(this.id);
+      this.navigate();
+    }
+  }
+
+  private navigate() {
     this.router.navigate(['/admin/products']);
   }
 

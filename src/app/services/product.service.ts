@@ -24,4 +24,8 @@ export class ProductService extends CommonService {
   update(id: string, product: Product): void {
     this.http.put(`${this.productUrl}/${id}`, product, {headers: this.httpHeaders}).subscribe(done => console.log(done));
   }
+
+  delete(id: string): void {
+    this.http.delete(`${this.productUrl}/${id}`, {headers: this.httpHeaders}).subscribe(done => console.log(done));
+  }
 }
