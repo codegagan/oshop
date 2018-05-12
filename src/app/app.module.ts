@@ -30,6 +30,7 @@ import { CategoryService } from './services/category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import {DataTableModule} from 'angular5-data-table';
+import { ProductFilterComponent } from './product-filter/product-filter.component';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -61,7 +62,8 @@ export function getAuthServiceConfigs() {
     AdminOrdersComponent,
     LoginComponent,
     ShoppingCartComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,7 @@ export function getAuthServiceConfigs() {
     FormsModule,
     DataTableModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', redirectTo: '/products', pathMatch: 'full' },
       { path: 'products', component: ProductsComponent},
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckoutComponent , canActivate: [AuthGuardService]},

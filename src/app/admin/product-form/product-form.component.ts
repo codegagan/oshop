@@ -26,7 +26,7 @@ export class ProductFormComponent implements OnInit, OnDestroy{
   private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.categories$ = this.categoryService.getCategories();
+    this.categories$ = this.categoryService.getAll();
     this.product = this.fb.group({
       title: ['', Validators.required],
       price: ['', [Validators.min(0), Validators.required]],

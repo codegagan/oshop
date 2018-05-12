@@ -8,7 +8,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class CategoryService extends CommonService {
 
-  getCategories(): Observable<Category[]> {
+  getAll(): Observable<Category[]> {
     return this.http.get<Category[]>(environment.url + '/categories', {headers: this.httpHeaders});
   }
 
