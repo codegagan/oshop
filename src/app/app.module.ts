@@ -31,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import {DataTableModule} from 'angular5-data-table';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -95,7 +96,8 @@ export function getAuthServiceConfigs() {
   UserService,
   AdminGuardService,
   CategoryService,
-  ProductService
+  ProductService,
+  ShoppingCartService
 ],
   bootstrap: [AppComponent]
 })

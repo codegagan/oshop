@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import { AdminGuardService } from '../services/admin-guard.service';
 import { UserService } from '../services/user.service';
 import { User } from '../services/model/User';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-bs-navbar',
@@ -13,8 +14,11 @@ import { User } from '../services/model/User';
 export class BsNavbarComponent implements OnInit {
 
   public user: User;
+  itemCount$: Observable<number>;
+  totalQuantity: number;
 
-  constructor(public socialAuthService: AuthService, private userService: UserService) {
+
+  constructor(public socialAuthService: AuthService, private userService: UserService, private cartService: ShoppingCartService) {
   }
 
   ngOnInit() {
@@ -24,6 +28,9 @@ export class BsNavbarComponent implements OnInit {
     }
     )
     .subscribe(user => this.user = user);
+
+    this.itemCount$ =  this.cartService.getItemCount();
+    this.cartService.getTotalQuantity().subscribe(count => this.totalQuantity = count);
   }
 
   logout() {
