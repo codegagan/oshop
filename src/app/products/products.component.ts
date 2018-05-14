@@ -54,6 +54,7 @@ export class ProductsComponent implements OnInit {
   }
 
   private updateQuantity() {
+    this.productQuantity = {};
     this.cart.items.forEach(cartItem => this.productQuantity[cartItem.product._id] = cartItem.quantity);
   }
 }

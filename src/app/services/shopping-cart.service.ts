@@ -15,7 +15,11 @@ export class ShoppingCartService extends CommonService {
 
   private create(): Observable<ShoppingCart> {
     return this.http.post<ShoppingCart>(environment.url + '/shopping-cart', null, { headers: this.httpHeaders })
-      .do(cart => if (this.observer) this.observer.next(cart));
+      .do(cart => {
+        if (this.observer) {
+          this.observer.next(cart);
+        }
+      });
   }
 
   // private createCartWithProduct(product: Product): Observable<ShoppingCart> {
@@ -36,18 +40,30 @@ export class ShoppingCartService extends CommonService {
     const item = cart.items.filter(elem2 => !!elem2.product).find(elem1 => elem1.product._id === product._id);
     if (item) {
       item.quantity--;
+      if (item.quantity < 1) {
+        cart.items = cart.items.filter(elem => !!elem.quantity);
+      }
     }
+    
     return cart;
   }
 
   private getCart(id: string): Observable<ShoppingCart> {
     return this.http.get<ShoppingCart>(environment.url + '/shopping-cart/' + id, { headers: this.httpHeaders })
-    .do(cart => if (this.observer) this.observer.next(cart));
+      .do(cart => {
+        if (this.observer) {
+          this.observer.next(cart);
+        }
+      });
   }
 
   private updateDb(cart: ShoppingCart): Observable<ShoppingCart> {
     return this.http.put<ShoppingCart>(environment.url + '/shopping-cart/' + cart._id, cart, { headers: this.httpHeaders })
-    .do(updatedCart => if (this.observer) this.observer.next(updatedCart));
+      .do(updatedCart => {
+        if (this.observer) { 
+          this.observer.next(updatedCart); 
+        }
+      });
   }
 
   async createOrGetCart(): Promise<ShoppingCart> {
