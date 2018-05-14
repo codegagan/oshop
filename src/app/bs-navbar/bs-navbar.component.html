@@ -8,7 +8,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">Shopping Cart
-          <span class="badge badge-info">{{totalQuantity}}</span>
+          <span class="badge badge-info" *ngIf="totalQuantity$ | async as q">{{q}}</span>
         </a>
 
       </li>

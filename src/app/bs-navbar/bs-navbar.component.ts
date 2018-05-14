@@ -15,7 +15,7 @@ export class BsNavbarComponent implements OnInit {
 
   public user: User;
   itemCount$: Observable<number>;
-  totalQuantity: number;
+  totalQuantity$: Observable<number>;
 
 
   constructor(public socialAuthService: AuthService, private userService: UserService, private cartService: ShoppingCartService) {
@@ -30,7 +30,7 @@ export class BsNavbarComponent implements OnInit {
     .subscribe(user => this.user = user);
 
     this.itemCount$ =  this.cartService.getItemCount();
-    this.cartService.getTotalQuantity().subscribe(count => this.totalQuantity = count);
+    this.totalQuantity$ = this.cartService.getTotalQuantityEvent();
   }
 
   logout() {

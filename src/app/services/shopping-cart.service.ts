@@ -4,25 +4,30 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Product } from './model/Product';
 import { ShoppingCart } from './model/ShoppingCart';
-import { element } from 'protractor';
 
 @Injectable()
 export class ShoppingCartService extends CommonService {
 
+  observer;
+  cart: Observable<ShoppingCart> = Observable.create((observer) => {
+    this.observer = observer;
+  });
+
   private create(): Observable<ShoppingCart> {
-    return this.http.post<ShoppingCart>(environment.url + '/shopping-cart', null, { headers: this.httpHeaders });
+    return this.http.post<ShoppingCart>(environment.url + '/shopping-cart', null, { headers: this.httpHeaders })
+      .do(cart => if (this.observer) this.observer.next(cart));
   }
 
-  private createCartWithProduct(product: Product): Observable<ShoppingCart> {
-    return this.http.post<ShoppingCart>(environment.url + '/shopping-cart', {product}, { headers: this.httpHeaders });
-  }
+  // private createCartWithProduct(product: Product): Observable<ShoppingCart> {
+  //   return this.http.post<ShoppingCart>(environment.url + '/shopping-cart', {product}, { headers: this.httpHeaders });
+  // }
 
   private add(product: Product, cart: ShoppingCart): ShoppingCart {
     const item = cart.items.filter(elem2 => !!elem2.product).find(elem1 => elem1.product._id === product._id);
     if (item) {
       item.quantity++;
     } else {
-      cart.items.push({product, quantity: 1});
+      cart.items.push({ product, quantity: 1 });
     }
     return cart;
   }
@@ -35,18 +40,14 @@ export class ShoppingCartService extends CommonService {
     return cart;
   }
 
-  async addToCart(product: Product): Promise<ShoppingCart> {
-    const cart = await this.createOrGetCart();
-    const updatedCart = this.add(product, cart);
-    return this.updateDb(updatedCart).toPromise();
-  }
-
   private getCart(id: string): Observable<ShoppingCart> {
-   return this.http.get<ShoppingCart>(environment.url + '/shopping-cart/' + id, { headers: this.httpHeaders });
+    return this.http.get<ShoppingCart>(environment.url + '/shopping-cart/' + id, { headers: this.httpHeaders })
+    .do(cart => if (this.observer) this.observer.next(cart));
   }
 
   private updateDb(cart: ShoppingCart): Observable<ShoppingCart> {
-    return this.http.put<ShoppingCart>(environment.url + '/shopping-cart/' + cart._id, cart, {headers: this.httpHeaders});
+    return this.http.put<ShoppingCart>(environment.url + '/shopping-cart/' + cart._id, cart, { headers: this.httpHeaders })
+    .do(updatedCart => if (this.observer) this.observer.next(updatedCart));
   }
 
   async createOrGetCart(): Promise<ShoppingCart> {
@@ -83,6 +84,20 @@ export class ShoppingCartService extends CommonService {
 
   getTotalQuantity(): Observable<number> {
     return this.createOrGetCartObs().map(cart => {
+      let quantity = 0;
+      cart.items.forEach(item => quantity += item.quantity);
+      return quantity;
+    });
+  }
+
+  async addToCart(product: Product): Promise<ShoppingCart> {
+    const cart = await this.createOrGetCart();
+    const updatedCart = this.add(product, cart);
+    return this.updateDb(updatedCart).toPromise();
+  }
+
+  getTotalQuantityEvent(): Observable<number> {
+    return this.cart.map(cart => {
       let quantity = 0;
       cart.items.forEach(item => quantity += item.quantity);
       return quantity;
