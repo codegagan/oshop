@@ -32,6 +32,7 @@ import { ProductService } from './services/product.service';
 import {DataTableModule} from 'angular5-data-table';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -64,7 +65,8 @@ export function getAuthServiceConfigs() {
     LoginComponent,
     ShoppingCartComponent,
     ProductFormComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,

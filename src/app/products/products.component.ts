@@ -36,25 +36,25 @@ export class ProductsComponent implements OnInit {
       });
     });
     this.cart = await this.cartService.createOrGetCart();
-    this.updateQuantity();
+    this.updateQuantity(this.cart);
   }
 
   addToCart(product: Product) {
     this.cartService.addToCart(product).then(cart => {
       this.cart = cart;
-      this.updateQuantity();
+      this.updateQuantity(cart);
     });
   }
 
   removeFromCart(product: Product) {
       this.cartService.removeFromCart(product).then(cart => {
         this.cart = cart;
-        this.updateQuantity();
+        this.updateQuantity(cart);
       });
   }
 
-  private updateQuantity() {
+  updateQuantity(cart : ShoppingCart) {
     this.productQuantity = {};
-    this.cart.items.forEach(cartItem => this.productQuantity[cartItem.product._id] = cartItem.quantity);
+    cart.items.forEach(cartItem => this.productQuantity[cartItem.product._id] = cartItem.quantity);
   }
 }

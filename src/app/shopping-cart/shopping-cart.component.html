@@ -1,3 +1,30 @@
-<p>
-  shopping-cart works!
-</p>
+<h1>Shopping Cart</h1>
+<div class="row col-9" *ngIf="cart as c">
+  <p>You have {{totalQuantity(c)}} items in your cart</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product</th>
+        <th class="text-center">Quantity</th>
+        <th class="text-right">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of c.items">
+        <td><img [src]="item.product.url" [alt]="item.product.title" class="rounded-circle" style="width:4rem;"></td>
+        <td>{{item.product.title}}</td>
+        <!-- <td>{{item.quantity}}</td> -->
+        <app-product-quantity [product]="item.product" [productQuantity]="productQuantity" (cartUpdated)="updateQuantity($event)">
+          </app-product-quantity>
+        <td class="text-right">{{(item.product.price * item.quantity) | currency:'INR':'symbol'}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <th>Total</th>
+      <th></th>
+      <th>{{totalPrice(c) | currency:'INR':'symbol'}}</th>
+    </tfoot>
+  </table>
+  <button class="btn btn-danger btn-sm" (click)="clearCart()">Clear Shopping Cart</button>
+</div>

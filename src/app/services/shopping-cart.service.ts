@@ -114,10 +114,29 @@ export class ShoppingCartService extends CommonService {
 
   getTotalQuantityEvent(): Observable<number> {
     return this.cart.map(cart => {
-      let quantity = 0;
-      cart.items.forEach(item => quantity += item.quantity);
-      return quantity;
+      return ShoppingCartService.getTotalQuantity(cart);
     });
+  }
+
+  static getTotalQuantity(cart: ShoppingCart) : number {
+    let quantity = 0;
+    cart.items.forEach(item => quantity += item.quantity);
+    return quantity;
+  }
+
+  static getTotalPrice(cart: ShoppingCart) : number {
+    let total =0;
+    cart.items.forEach(item => total += item.product.price * item.quantity);
+    return total;
+  }
+
+  clear() : Observable<ShoppingCart>{
+    return this.createOrGetCartObs().switchMap(cart => this.updateDb(this.clearItems(cart)));
+  }
+
+  private clearItems(cart: ShoppingCart) : ShoppingCart {
+    cart.items = [];
+    return cart;
   }
 
 }

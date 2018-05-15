@@ -10,13 +10,11 @@
         <p class="card-text">{{p.price | currency:'INR':'symbol'}}</p>
       </div>
       <div class="card-footer">
-        <button *ngIf="!productQuantity[p._id]; else cartUpdate" class="btn btn-secondary btn-block" (click)="addToCart(p)">Add to Cart</button>
+        <button *ngIf="!productQuantity[p._id]; else cartUpdate" class="btn btn-secondary btn-block" 
+        (click)="addToCart(p)">Add to Cart</button>
         <ng-template #cartUpdate>
-          <div class="row no-gutters">
-            <button class="col-2 btn btn-secondary btn-block" (click)="removeFromCart(p)">-</button>
-            <div class="col text-center">{{productQuantity[p._id]}}</div>
-            <button class="col-2 btn btn-secondary btn-block" (click)="addToCart(p)">+</button>
-          </div>
+          <app-product-quantity [product]="p" [productQuantity]="productQuantity" (cartUpdated)="updateQuantity($event)">
+          </app-product-quantity>
         </ng-template>
       </div>
     </div>
