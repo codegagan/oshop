@@ -33,6 +33,8 @@ import {DataTableModule} from 'angular5-data-table';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './order.service';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -66,7 +68,8 @@ export function getAuthServiceConfigs() {
     ShoppingCartComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    OrderSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,7 @@ export function getAuthServiceConfigs() {
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckoutComponent , canActivate: [AuthGuardService]},
       { path: 'my/orders', component: MyOrdersComponent , canActivate: [AuthGuardService]},
-      { path: 'order-success', component: OrderSuccessComponent , canActivate: [AuthGuardService]},
+      { path: 'order-success/:id', component: OrderSuccessComponent , canActivate: [AuthGuardService]},
       { path: 'login', component: LoginComponent },
       { path: 'admin/products/new', component: ProductFormComponent , canActivate: [AuthGuardService, AdminGuardService]},
       { path: 'admin/products/:id', component: ProductFormComponent , canActivate: [AuthGuardService, AdminGuardService]},
@@ -99,7 +102,8 @@ export function getAuthServiceConfigs() {
   AdminGuardService,
   CategoryService,
   ProductService,
-  ShoppingCartService
+  ShoppingCartService,
+  OrderService
 ],
   bootstrap: [AppComponent]
 })

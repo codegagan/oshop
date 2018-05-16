@@ -1,6 +1,7 @@
 <h1>Shopping Cart</h1>
 <div class="row col-9" *ngIf="cart as c">
-  <p>You have {{totalQuantity(c)}} items in your cart</p>
+  <p>You have {{totalQuantity(c)}} items in your cart </p>
+  <button *ngIf="c.items" class="btn btn-light btn-sm" (click)="clearCart()" style="margin-left: auto">Clear Shopping Cart</button>
   <table class="table">
     <thead>
       <tr>
@@ -14,7 +15,6 @@
       <tr *ngFor="let item of c.items">
         <td><img [src]="item.product.url" [alt]="item.product.title" class="rounded-circle" style="width:4rem;"></td>
         <td>{{item.product.title}}</td>
-        <!-- <td>{{item.quantity}}</td> -->
         <app-product-quantity [product]="item.product" [productQuantity]="productQuantity" (cartUpdated)="updateQuantity($event)">
           </app-product-quantity>
         <td class="text-right">{{(item.product.price * item.quantity) | currency:'INR':'symbol'}}</td>
@@ -26,5 +26,5 @@
       <th>{{totalPrice(c) | currency:'INR':'symbol'}}</th>
     </tfoot>
   </table>
-  <button class="btn btn-danger btn-sm" (click)="clearCart()">Clear Shopping Cart</button>
+ <a routerLink="/check-out" class="btn btn-primary">Checkout</a>
 </div>

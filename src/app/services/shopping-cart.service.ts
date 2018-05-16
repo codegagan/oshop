@@ -120,12 +120,14 @@ export class ShoppingCartService extends CommonService {
 
   static getTotalQuantity(cart: ShoppingCart) : number {
     let quantity = 0;
+    if(cart)
     cart.items.forEach(item => quantity += item.quantity);
     return quantity;
   }
 
   static getTotalPrice(cart: ShoppingCart) : number {
-    let total =0;
+    let total = 0;
+    if(cart)
     cart.items.forEach(item => total += item.product.price * item.quantity);
     return total;
   }

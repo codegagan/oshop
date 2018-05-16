@@ -1,3 +1,25 @@
-<p>
-  my-orders works!
-</p>
+<h3>Your Orders</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+  <th>Name</th>
+  <th>Date</th>
+  <th>Price</th>
+</tr>
+</thead>
+<tbody>
+  <tr *ngFor="let order of order$ | async">
+    <td>{{order.shipping.name}}</td>
+    <td>{{order.creationDate | date}}</td>
+    <td>{{order.totalPrice | currency:'INR':"symbol"}}</td>
+  </tr>
+</tbody>
+<tfoot>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</tfoot>
+</table>
