@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { Product } from '../services/model/Product';
+import { ProductService } from '../shared/services/product.service';
+import { Product } from '../shared/model/Product';
 import { Observable } from 'rxjs/Observable';
-import { CategoryService } from '../services/category.service';
-import { Category } from '../services/model/Category';
+import { CategoryService } from '../shared/services/category.service';
+import { Category } from '../shared/model/Category';
 import { ActivatedRoute } from '@angular/router';
-import { ShoppingCartService } from '../services/shopping-cart.service';
-import { ShoppingCart, CartItem } from '../services/model/ShoppingCart';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
+import { ShoppingCart, CartItem } from '../shared/model/ShoppingCart';
 
 @Component({
   selector: 'app-products',

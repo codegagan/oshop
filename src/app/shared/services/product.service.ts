@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CommonService } from './common-service';
-import { Product } from './model/Product';
-import { environment } from '../../environments/environment';
+import { Product } from '../model/Product';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()

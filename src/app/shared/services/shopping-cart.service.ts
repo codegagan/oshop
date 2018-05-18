@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CommonService } from './common-service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
-import { Product } from './model/Product';
-import { ShoppingCart } from './model/ShoppingCart';
+import { Product } from '../model/Product';
+import { ShoppingCart } from '../model/ShoppingCart';
 
 @Injectable()
 export class ShoppingCartService extends CommonService {

@@ -4,7 +4,7 @@ import { AuthService } from 'angular5-social-login';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import {Observable} from 'rxjs/Observable';
-import { UserService } from './user.service';
+import { UserService } from '../../shared/services/user.service';
 import 'rxjs/add/observable/of';
 
 @Injectable()

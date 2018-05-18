@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ShoppingCartService } from '../services/shopping-cart.service';
-import { OrderService } from '../order.service';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
+import { OrderService } from '../shared/services/order.service';
 import { AuthService } from 'angular5-social-login';
 import { Router } from '@angular/router';
 

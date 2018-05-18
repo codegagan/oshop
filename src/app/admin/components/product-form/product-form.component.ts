@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../services/model/Category';
+import { CategoryService } from '../../../shared/services/category.service';
+import { Category } from '../../../shared/model/Category';
 import { Observable } from 'rxjs/Observable';
-import { Product } from '../../services/model/Product';
-import { ProductService } from '../../services/product.service';
+import { Product } from '../../../shared/model/Product';
+import { ProductService } from '../../../shared/services/product.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
