@@ -4,7 +4,7 @@
     <p class="card-text">You have {{totalQuantity}} items in your shopping cart </p>
     <ul class="list-group list-group-flush" *ngIf="cart">
       <li class="list-group-item" *ngFor="let item of cart.items">
-        {{item.quantity}} X {{item.product.title}}
+        {{item.quantity}} x {{item.product.title}}
         <div class="float-right">{{(item.product.price * item.quantity) | currency:'INR':'symbol'}}</div>
       </li>
       <li class="list-group-item font-weight-bold">

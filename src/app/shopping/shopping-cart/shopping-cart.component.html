@@ -26,5 +26,5 @@
       <th>{{totalPrice(c) | currency:'INR':'symbol'}}</th>
     </tfoot>
   </table>
- <a routerLink="/check-out" class="btn btn-primary">Checkout</a>
+ <a routerLink="/check-out" class="btn btn-primary" [class.disabled]="!c.items.length">Checkout</a>
 </div>
