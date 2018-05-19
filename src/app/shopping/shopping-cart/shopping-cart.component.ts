@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../shared/services/shopping-cart.service';
-import { ShoppingCart } from '../shared/model/ShoppingCart';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { ShoppingCart } from '../../shared/model/ShoppingCart';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -22,14 +22,14 @@ export class ShoppingCartComponent implements OnInit {
       this.updateQuantity(cart);
     });
   }
-  
-  updateQuantity(cart : ShoppingCart) {
+
+  updateQuantity(cart: ShoppingCart) {
     this.productQuantity = {};
     this.cart = cart;
     cart.items.forEach(cartItem => this.productQuantity[cartItem.product._id] = cartItem.quantity);
   }
 
-  clearCart(){
+  clearCart() {
     this.cartService.clear().subscribe(cart => this.cart = cart);
   }
 

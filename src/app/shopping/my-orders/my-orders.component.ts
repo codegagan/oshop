@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angular5-social-login';
-import { OrderService } from '../shared/services/order.service';
+import { OrderService } from '../../shared/services/order.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({

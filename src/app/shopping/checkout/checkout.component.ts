@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ShoppingCartService } from '../shared/services/shopping-cart.service';
-import { OrderService } from '../shared/services/order.service';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { OrderService } from '../../shared/services/order.service';
 import { AuthService } from 'angular5-social-login';
 import { Router } from '@angular/router';
 
@@ -27,9 +27,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   async placeOrder() {
-    let cart = await this.cartService.createOrGetCart();
+    const cart = await this.cartService.createOrGetCart();
     this.socalAuthService.authState.subscribe(user => {
-      let order = {
+      const order = {
         shipping: this.shipping.value,
         items: cart.items,
         creationDate: new Date().getTime(),
@@ -37,7 +37,7 @@ export class CheckoutComponent implements OnInit {
         user: user.id
       };
       this.cartService.clear().toPromise();
-      this.orderService.place(order).subscribe(order => this.router.navigate(['/order-success', order._id]));
+      this.orderService.place(order).subscribe(o => this.router.navigate(['/order-success', o._id]));
     });
 
   }

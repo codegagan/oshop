@@ -5,7 +5,7 @@ import {
   GoogleLoginProvider
 } from 'angular5-social-login';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/services/user.service';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-login',

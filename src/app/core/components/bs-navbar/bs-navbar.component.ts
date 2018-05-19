@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, SocialUser } from 'angular5-social-login';
 import {Observable} from 'rxjs/Observable';
-import { AdminGuardService } from '../admin/services/admin-guard.service';
-import { UserService } from '../shared/services/user.service';
-import { User } from '../shared/model/User';
-import { ShoppingCartService } from '../shared/services/shopping-cart.service';
+import { AdminGuardService } from '../../../admin/services/admin-guard.service';
+import { UserService } from '../../../shared/services/user.service';
+import { User } from '../../../shared/model/User';
+import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-bs-navbar',

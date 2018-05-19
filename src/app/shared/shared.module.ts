@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { AuthServiceConfig, GoogleLoginProvider } from 'angular5-social-login';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular5-social-login';
 
-import { OrderService } from './services/order.service';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CategoryService } from './services/category.service';
+import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
@@ -28,10 +31,14 @@ export function getAuthServiceConfigs() {
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    NgbModule.forRoot(),
+    HttpClientModule,
+    SocialLoginModule
   ],
   declarations: [ProductQuantityComponent],
-  exports: [ProductQuantityComponent],
+  exports: [ProductQuantityComponent, CommonModule, ReactiveFormsModule, NgbModule.forRoot().ngModule, SocialLoginModule],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
