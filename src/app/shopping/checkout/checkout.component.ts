@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   shipping: FormGroup;
 
-  constructor(private fb: FormBuilder, private cartService: ShoppingCartService, 
+  constructor(private fb: FormBuilder, private cartService: ShoppingCartService,
     private orderService: OrderService, private socalAuthService: AuthService,
     private router: Router) { }
 
