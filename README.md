@@ -4,7 +4,7 @@ Try Application [here](http://oshop.codegagan.com)
 
 ## Features
 
-Application for Organic shopping built with Angular 5 with features
+Application for Organic shopping built with Angular 5 with features:
     
     * Google sign in
     * Shopping cart
@@ -16,4 +16,4 @@ Application for Organic shopping built with Angular 5 with features
 
 ## Backend
 
-It relies on http APIs and mongodb, which are implemented [here](https://github.com/codegagan/oshop*server)
+It relies on http APIs and mongodb, which are implemented [here](https://github.com/codegagan/oshop-server)
