@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class CommonService {
     protected httpHeaders: HttpHeaders;
     constructor(protected http: HttpClient) {
-        this.httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
-        .set('x-codegagan', 'gagan');
+        this.httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+        // .set('x-codegagan', 'gagan');
     }
 }
