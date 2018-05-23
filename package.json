@@ -7,6 +7,7 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "deploy": "ng build --prod --op ../oshop-server/oshop/",
+    "surge": "ng build --prod && cp dist/index.html dist/200.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

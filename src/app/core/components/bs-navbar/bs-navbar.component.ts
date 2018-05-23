@@ -17,6 +17,7 @@ export class BsNavbarComponent implements OnInit {
   itemCount$: Observable<number>;
   totalQuantity$: Observable<number>;
 
+  collapsed = true;
 
   constructor(public socialAuthService: AuthService, private userService: UserService, private cartService: ShoppingCartService) {
   }
